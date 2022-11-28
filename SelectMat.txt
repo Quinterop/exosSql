@@ -1,0 +1,3 @@
+SELECT wording, coef * 100/(SELECT SUM(coef) FROM Matter) FROM Matter;
+
+SELECT SUM(coef) FROM Matter;

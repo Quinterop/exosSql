@@ -1,0 +1,38 @@
+DROP TABLE IF EXISTS Notation;
+DROP TABLE IF EXISTS Test;
+DROP TABLE IF EXISTS Matter;
+DROP TABLE IF EXISTS Student;
+
+CREATE TABLE Student (
+    numstud INTEGER PRIMARY KEY,
+    name VARCHAR(20),
+    firstname VARCHAR(20),
+    dateofbirth DATE,
+    street VARCHAR(20),
+    postalcod VARCHAR(20),
+    city VARCHAR(20),
+);
+
+CREATE TABLE Matter(
+    codemat VARCHAR(5) PRIMARY KEY,
+    wording VARCHAR(20),
+    coef FLOAT
+);
+
+CREATE TABLE Test(
+    numtest INTEGER PRIMARY KEY,
+    testdate DATE,
+    place VARCHAR(20),
+    codemat VARCHAR(5),
+    FOREIGN KEY (codemat) REFERENCES Matter (codemat)
+);
+
+CREATE TABLE Notation(
+    numstud INTEGER,
+    numtest INTEGER,
+    score FLOAT,
+    PRIMARY KEY (numstud, numtest),
+    FOREIGN KEY (numstud) REFERENCES Student (numstud),
+    FOREIGN KEY (numtest) REFERENCES Test (numtest)
+);
+
